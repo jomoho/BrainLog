@@ -16,6 +16,8 @@ public class BackendControl {
 
 	private boolean sendValues = false;
 	private boolean logValues = false;
+	
+	private CSVLogHandler logHandler;
 
 	public static int[] cognitivActionList = { EmoState.EE_CognitivAction_t.COG_PUSH.ToInt(),
 			EmoState.EE_CognitivAction_t.COG_PULL.ToInt(), EmoState.EE_CognitivAction_t.COG_LIFT.ToInt(),
@@ -29,6 +31,7 @@ public class BackendControl {
 			EmoState.EE_CognitivAction_t.COG_DISAPPEAR.ToInt() };
 
 	private BackendControl() {
+		this.logHandler = new CSVLogHandler("testfolder", "testfilename");
 	};
 
 	public static BackendControl getInstance() {
@@ -84,6 +87,9 @@ public class BackendControl {
 		emo.init();
 		emo.start();
 	}
+	public void startLog(String username, String video){
+		logHandler = new CSVLogHandler(username, video);
+	}
 
 	public void updateEmoState() {
 
@@ -116,7 +122,8 @@ public class BackendControl {
 				}
 
 				if (logValues) {
-					LogHandler.getInstance().log(state);
+					//LogHandler.getInstance().log(state);
+					this.logHandler.log(state);
 				}
 
 			}

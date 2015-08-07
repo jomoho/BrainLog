@@ -12,4 +12,4 @@ hs_err_pid*
 
 .classpath
 
-lib/swt.jar
+./lib/swt.jar
