@@ -59,6 +59,9 @@ public class CSVLogHandler {
 			e.printStackTrace();
 		}
 	}
+	private int makeint(boolean b){
+		return b?1:0;
+	}
 	
 	public void log(BCIState pState)
 	{
@@ -68,19 +71,19 @@ public class CSVLogHandler {
 					pState.getExcitement() +"," +
 					pState.getFrustration() + "," +
 					pState.getMeditation() + "," +
-					pState.getEngagementBoredom()+ 
-					pState.isBlink() + "," +
+					pState.getEngagementBoredom()+ "," +
+					makeint(pState.isBlink()) + "," +
 					pState.getClench() + "," +
 					pState.getLaugh() + "," +
 					pState.getSmile() + "," +
 					pState.getEyebrow() + "," +
 					pState.getFurrowBrow() + "," +
-					pState.isLookLeft() + "," +
-					pState.isLookRight() + "," +
+					makeint(pState.isLookLeft()) + "," +
+					makeint(pState.isLookRight()) + "," +
 					pState.getSmirkleft() + "," +
 					pState.getSmirkright() + "," +
-					pState.isWinkLeft() + "," +
-					pState.isWinkRight() + "," +"\n");
+					makeint(pState.isWinkLeft()) + "," +
+					makeint(pState.isWinkRight()) + "," +"\n");
 			out.flush();
 			//pState.flush();
 		}
