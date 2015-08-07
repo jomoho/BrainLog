@@ -88,8 +88,14 @@ public class BackendControl {
 		emo.start();
 	}
 	public void startLog(String username, String video){
+		logValues = true;
 		logHandler = new CSVLogHandler(username, video);
 	}
+
+	public void stopLog(){
+		logValues = false;
+	}
+
 
 	public void updateEmoState() {
 
