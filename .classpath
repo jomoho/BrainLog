@@ -5,6 +5,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/jna.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/eitoolkit_java_jni.jar"/>
 	<classpathentry kind="lib" path="lib/swing2swt.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
