@@ -122,7 +122,7 @@ public class BackendControl {
 					CommunitactionHandler comm = CommunitactionHandler.getInstance();
 					comm.sendBCIData(state);
 				}
-				System.out.println("logValues: " + logValues);
+				//System.out.println("logValues: " + logValues);
 				if (logValues) {
 					//LogHandler.getInstance().log(state);
 					this.logHandler.log(state);
