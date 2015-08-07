@@ -247,6 +247,7 @@ public class Mainframe {
 			public void widgetSelected(SelectionEvent arg0) {
 				
 				BackendControl.getInstance().stopLog();
+				System.out.println("stop");
 			}
 		});
 
@@ -263,8 +264,8 @@ public class Mainframe {
 			}
 		});
 		btnStreamToUdp.setText("Stream to UDP");
-
-	/*	final Button btnLog = new Button(grpSettings, SWT.CHECK);
+/*
+		final Button btnLog = new Button(grpSettings, SWT.CHECK);
 		btnLog.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
