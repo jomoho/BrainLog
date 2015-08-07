@@ -187,10 +187,13 @@ public class Mainframe {
 	 * 
 	 * @wbp.parser.entryPoint
 	 */
+	/**
+	 * 
+	 */
 	protected void createContents() {
 		shell = new Shell();
 		shell.setMinimumSize(new Point(132, 43));
-		shell.setSize(600, 568);
+		shell.setSize(600, 450);
 		shell.setText("SWT Application");
 		shell.setLayout(new GridLayout(1, false));
 
@@ -340,140 +343,141 @@ public class Mainframe {
 		lblLookrightcarrier = new Label(grpExpressive, SWT.NONE);
 		lblLookrightcarrier.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 
-		Group grpCognitive = new Group(shell, SWT.NONE);
-		grpCognitive.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1));
-		grpCognitive.setText("Cognitive");
-		grpCognitive.setLayout(new GridLayout(5, false));
-
-		Label lblStart = new Label(grpCognitive, SWT.NONE);
-		lblStart.setText("Neutral");
-
-		lblNeutralcarrier = new Label(grpCognitive, SWT.NONE);
-
-		Button btnNeutralTrain = new Button(grpCognitive, SWT.NONE);
-		btnNeutralTrain.setText("Train");
-
-		Button btnNeutralDelete = new Button(grpCognitive, SWT.NONE);
-		btnNeutralDelete.setText("Delete");
-		new Label(grpCognitive, SWT.NONE);
-
-		Label lblAction1Carrier = new Label(grpCognitive, SWT.NONE);
-		lblAction1Carrier.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		lblAction1Carrier.setText("Action 1:");
-
-		comboAction1 = new Combo(grpCognitive, SWT.READ_ONLY);
-		comboAction1.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				progressBarAction1.setSelection(0);
-			}
-		});
-		comboAction1.setEnabled(false);
-		comboAction1.setItems(options);
-		GridData gd_comboAction1 = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
-		gd_comboAction1.widthHint = 120;
-		comboAction1.setLayoutData(gd_comboAction1);
-
-		final Button btnTrainAction1 = new Button(grpCognitive, SWT.NONE);
-		btnTrainAction1.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				// Strings in ComboBox haben selbe Reihenfolge wie StringArray
-				// in startTraining
-				bc.startTraining(comboAction1.getSelectionIndex());
-
-			}
-		});
-		btnTrainAction1.setText("Train");
-		btnTrainAction1.setEnabled(false);
-
-		final Button btnDeleteAction1 = new Button(grpCognitive, SWT.NONE);
-		btnDeleteAction1.setText("Delete");
-		btnDeleteAction1.setEnabled(false);
-
-		progressBarAction1 = new ProgressBar(grpCognitive, SWT.NONE);
-
-		Label lblAction2Carrier = new Label(grpCognitive, SWT.NONE);
-		lblAction2Carrier.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		lblAction2Carrier.setText("Action 2:");
-
-		comboAction2 = new Combo(grpCognitive, SWT.READ_ONLY);
-		comboAction2.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				progressBarAction2.setSelection(0);
-			}
-		});
-		comboAction2.setEnabled(false);
-		comboAction2.setItems(options);
-		GridData gd_comboAction2 = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
-		gd_comboAction2.widthHint = 145;
-		comboAction2.setLayoutData(gd_comboAction2);
-
-		final Button btnTrainAction2 = new Button(grpCognitive, SWT.NONE);
-		btnTrainAction2.setEnabled(false);
-		btnTrainAction2.setText("Train");
-
-		final Button btnDeleteAction2 = new Button(grpCognitive, SWT.NONE);
-		btnDeleteAction2.setEnabled(false);
-		btnDeleteAction2.setText("Delete");
-
-		progressBarAction2 = new ProgressBar(grpCognitive, SWT.NONE);
-
-		Label lblAction3Carrier = new Label(grpCognitive, SWT.NONE);
-		lblAction3Carrier.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		lblAction3Carrier.setText("Action 3:");
-
-		comboAction3 = new Combo(grpCognitive, SWT.READ_ONLY);
-		comboAction3.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				progressBarAction3.setSelection(0);
-			}
-		});
-		comboAction3.setEnabled(false);
-		comboAction3.setItems(options);
-		GridData gd_comboAction3 = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
-		gd_comboAction3.widthHint = 165;
-		comboAction3.setLayoutData(gd_comboAction3);
-
-		final Button btnTrainAction3 = new Button(grpCognitive, SWT.NONE);
-		btnTrainAction3.setEnabled(false);
-		btnTrainAction3.setText("Train");
-
-		final Button btnDeleteAction3 = new Button(grpCognitive, SWT.NONE);
-		btnDeleteAction3.setEnabled(false);
-		btnDeleteAction3.setText("Delete");
-
-		progressBarAction3 = new ProgressBar(grpCognitive, SWT.NONE);
-
-		Label lblAction4Carrier = new Label(grpCognitive, SWT.NONE);
-		lblAction4Carrier.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		lblAction4Carrier.setText("Action 4:");
-
-		comboAction4 = new Combo(grpCognitive, SWT.READ_ONLY);
-		comboAction4.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				progressBarAction4.setSelection(0);
-			}
-		});
-		comboAction4.setEnabled(false);
-		comboAction4.setItems(options);
-		GridData gd_comboAction4 = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
-		gd_comboAction4.widthHint = 135;
-		comboAction4.setLayoutData(gd_comboAction4);
-
-		final Button btnTrainAction4 = new Button(grpCognitive, SWT.NONE);
-		btnTrainAction4.setEnabled(false);
-		btnTrainAction4.setText("Train");
-
-		final Button btnDeleteAction4 = new Button(grpCognitive, SWT.NONE);
-		btnDeleteAction4.setEnabled(false);
-		btnDeleteAction4.setText("Delete");
-
-		progressBarAction4 = new ProgressBar(grpCognitive, SWT.NONE);
-
+//      Group grpCognitive = new Group(shell, SWT.NONE);
+//		grpCognitive.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1));
+//		grpCognitive.setText("Cognitive");
+//		grpCognitive.setLayout(new GridLayout(5, false));
+//
+//		Label lblStart = new Label(grpCognitive, SWT.NONE);
+//		lblStart.setText("Neutral");
+//
+//		lblNeutralcarrier = new Label(grpCognitive, SWT.NONE);
+//
+//		Button btnNeutralTrain = new Button(grpCognitive, SWT.NONE);
+//		btnNeutralTrain.setText("Train");
+//
+//		Button btnNeutralDelete = new Button(grpCognitive, SWT.NONE);
+//		btnNeutralDelete.setText("Delete");
+//		new Label(grpCognitive, SWT.NONE);
+//
+//		Label lblAction1Carrier = new Label(grpCognitive, SWT.NONE);
+//		lblAction1Carrier.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+//		lblAction1Carrier.setText("Action 1:");
+//
+//		comboAction1 = new Combo(grpCognitive, SWT.READ_ONLY);
+//		comboAction1.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent arg0) {
+//				progressBarAction1.setSelection(0);
+//			}
+//		});
+//		comboAction1.setEnabled(false);
+//		comboAction1.setItems(options);
+//		GridData gd_comboAction1 = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
+//		gd_comboAction1.widthHint = 120;
+//		comboAction1.setLayoutData(gd_comboAction1);
+//
+//		final Button btnTrainAction1 = new Button(grpCognitive, SWT.NONE);
+//		btnTrainAction1.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent arg0) {
+//				// Strings in ComboBox haben selbe Reihenfolge wie StringArray
+//				// in startTraining
+//				bc.startTraining(comboAction1.getSelectionIndex());
+//
+//			}
+//		});
+//		btnTrainAction1.setText("Train");
+//		btnTrainAction1.setEnabled(false);
+//
+//		final Button btnDeleteAction1 = new Button(grpCognitive, SWT.NONE);
+//		btnDeleteAction1.setText("Delete");
+//		btnDeleteAction1.setEnabled(false);
+//
+//		progressBarAction1 = new ProgressBar(grpCognitive, SWT.NONE);
+//
+//		Label lblAction2Carrier = new Label(grpCognitive, SWT.NONE);
+//		lblAction2Carrier.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+//		lblAction2Carrier.setText("Action 2:");
+//
+//		comboAction2 = new Combo(grpCognitive, SWT.READ_ONLY);
+//		comboAction2.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent arg0) {
+//				progressBarAction2.setSelection(0);
+//			}
+//		});
+//		comboAction2.setEnabled(false);
+//		comboAction2.setItems(options);
+//		GridData gd_comboAction2 = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
+//		gd_comboAction2.widthHint = 145;
+//		comboAction2.setLayoutData(gd_comboAction2);
+//
+//		final Button btnTrainAction2 = new Button(grpCognitive, SWT.NONE);
+//		btnTrainAction2.setEnabled(false);
+//		btnTrainAction2.setText("Train");
+//
+//		final Button btnDeleteAction2 = new Button(grpCognitive, SWT.NONE);
+//		btnDeleteAction2.setEnabled(false);
+//		btnDeleteAction2.setText("Delete");
+//
+//		progressBarAction2 = new ProgressBar(grpCognitive, SWT.NONE);
+//
+//		Label lblAction3Carrier = new Label(grpCognitive, SWT.NONE);
+//		lblAction3Carrier.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+//		lblAction3Carrier.setText("Action 3:");
+//
+//		comboAction3 = new Combo(grpCognitive, SWT.READ_ONLY);
+//		comboAction3.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent arg0) {
+//				progressBarAction3.setSelection(0);
+//			}
+//		});
+//		comboAction3.setEnabled(false);
+//		comboAction3.setItems(options);
+//		GridData gd_comboAction3 = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
+//		gd_comboAction3.widthHint = 165;
+//		comboAction3.setLayoutData(gd_comboAction3);
+//
+//		final Button btnTrainAction3 = new Button(grpCognitive, SWT.NONE);
+//		btnTrainAction3.setEnabled(false);
+//		btnTrainAction3.setText("Train");
+//
+//		final Button btnDeleteAction3 = new Button(grpCognitive, SWT.NONE);
+//		btnDeleteAction3.setEnabled(false);
+//		btnDeleteAction3.setText("Delete");
+//
+//		progressBarAction3 = new ProgressBar(grpCognitive, SWT.NONE);
+//
+//		Label lblAction4Carrier = new Label(grpCognitive, SWT.NONE);
+//		lblAction4Carrier.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+//		lblAction4Carrier.setText("Action 4:");
+//
+//		comboAction4 = new Combo(grpCognitive, SWT.READ_ONLY);
+//		comboAction4.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent arg0) {
+//				progressBarAction4.setSelection(0);
+//			}
+//		});
+//		comboAction4.setEnabled(false);
+//		comboAction4.setItems(options);
+//		GridData gd_comboAction4 = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
+//		gd_comboAction4.widthHint = 135;
+//		comboAction4.setLayoutData(gd_comboAction4);
+//
+//		final Button btnTrainAction4 = new Button(grpCognitive, SWT.NONE);
+//		btnTrainAction4.setEnabled(false);
+//		btnTrainAction4.setText("Train");
+//
+//		final Button btnDeleteAction4 = new Button(grpCognitive, SWT.NONE);
+//		btnDeleteAction4.setEnabled(false);
+//		btnDeleteAction4.setText("Delete");
+//
+//		progressBarAction4 = new ProgressBar(grpCognitive, SWT.NONE);
+//		
+//
 		Menu menu = new Menu(shell, SWT.BAR);
 		shell.setMenuBar(menu);
 
@@ -504,121 +508,121 @@ public class Mainframe {
 		});
 		mntmToComposer.setText("To Composer");
 
-		btnNeutralTrain.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				bc.startNeutralTraining();
-				comboAction1.setEnabled(true);
-				btnTrainAction1.setEnabled(true);
-				btnDeleteAction1.setEnabled(true);
-
-				comboAction2.setEnabled(true);
-				btnTrainAction2.setEnabled(true);
-				btnDeleteAction2.setEnabled(true);
-
-				comboAction3.setEnabled(true);
-				btnTrainAction3.setEnabled(true);
-				btnDeleteAction3.setEnabled(true);
-
-				comboAction4.setEnabled(true);
-				btnTrainAction4.setEnabled(true);
-				btnDeleteAction4.setEnabled(true);
-			}
-		});
-
-		btnNeutralDelete.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				bc.deleteNeutralTraining();
-			}
-		});
-
-		btnTrainAction1.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				// Strings in ComboBox haben selbe Reihenfolge wie StringArray
-				// in startTraining
-				bc.startTraining(comboAction1.getSelectionIndex());
-				comboAction1.setEnabled(false);
-			}
-		});
-
-		btnTrainAction2.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				// Strings in ComboBox haben selbe Reihenfolge wie StringArray
-				// in startTraining
-				bc.startTraining(comboAction2.getSelectionIndex());
-				comboAction2.setEnabled(false);
-			}
-		});
-
-		btnTrainAction3.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				// Strings in ComboBox haben selbe Reihenfolge wie StringArray
-				// in startTraining
-				bc.startTraining(comboAction3.getSelectionIndex());
-				comboAction3.setEnabled(false);
-			}
-		});
-
-		btnTrainAction4.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				// Strings in ComboBox haben selbe Reihenfolge wie StringArray
-				// in startTraining
-				bc.startTraining(comboAction4.getSelectionIndex());
-				comboAction4.setEnabled(false);
-			}
-		});
-
-		btnDeleteAction1.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				// Strings in ComboBox haben selbe Reihenfolge wie StringArray
-				// in startTraining
-				bc.deleteTraining(comboAction1.getSelectionIndex());
-				comboAction1.deselectAll();
-				comboAction1.setEnabled(true);
-				progressBarAction1.setSelection(0);
-			}
-		});
-
-		btnDeleteAction2.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				// Strings in ComboBox haben selbe Reihenfolge wie StringArray
-				// in startTraining
-				bc.deleteTraining(comboAction2.getSelectionIndex());
-				comboAction2.deselectAll();
-				comboAction2.setEnabled(true);
-				progressBarAction2.setSelection(0);
-			}
-		});
-
-		btnDeleteAction3.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				// Strings in ComboBox haben selbe Reihenfolge wie StringArray
-				// in startTraining
-				bc.deleteTraining(comboAction3.getSelectionIndex());
-				comboAction3.deselectAll();
-				comboAction3.setEnabled(true);
-				progressBarAction3.setSelection(0);
-			}
-		});
-
-		btnDeleteAction4.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				// Strings in ComboBox haben selbe Reihenfolge wie StringArray
-				// in startTraining
-				bc.deleteTraining(comboAction4.getSelectionIndex());
-				comboAction4.deselectAll();
-				comboAction4.setEnabled(true);
-				progressBarAction4.setSelection(0);
-			}
-		});
+//		btnNeutralTrain.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent arg0) {
+//				bc.startNeutralTraining();
+//				comboAction1.setEnabled(true);
+//				btnTrainAction1.setEnabled(true);
+//				btnDeleteAction1.setEnabled(true);
+//
+//				comboAction2.setEnabled(true);
+//				btnTrainAction2.setEnabled(true);
+//				btnDeleteAction2.setEnabled(true);
+//
+//				comboAction3.setEnabled(true);
+//				btnTrainAction3.setEnabled(true);
+//				btnDeleteAction3.setEnabled(true);
+//
+//				comboAction4.setEnabled(true);
+//				btnTrainAction4.setEnabled(true);
+//				btnDeleteAction4.setEnabled(true);
+//			}
+//		});
+//
+//		btnNeutralDelete.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent arg0) {
+//				bc.deleteNeutralTraining();
+//			}
+//		});
+//
+//		btnTrainAction1.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent arg0) {
+//				// Strings in ComboBox haben selbe Reihenfolge wie StringArray
+//				// in startTraining
+//				bc.startTraining(comboAction1.getSelectionIndex());
+//				comboAction1.setEnabled(false);
+//			}
+//		});
+//
+//		btnTrainAction2.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent arg0) {
+//				// Strings in ComboBox haben selbe Reihenfolge wie StringArray
+//				// in startTraining
+//				bc.startTraining(comboAction2.getSelectionIndex());
+//				comboAction2.setEnabled(false);
+//			}
+//		});
+//
+//		btnTrainAction3.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent arg0) {
+//				// Strings in ComboBox haben selbe Reihenfolge wie StringArray
+//				// in startTraining
+//				bc.startTraining(comboAction3.getSelectionIndex());
+//				comboAction3.setEnabled(false);
+//			}
+//		});
+//
+//		btnTrainAction4.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent arg0) {
+//				// Strings in ComboBox haben selbe Reihenfolge wie StringArray
+//				// in startTraining
+//				bc.startTraining(comboAction4.getSelectionIndex());
+//				comboAction4.setEnabled(false);
+//			}
+//		});
+//
+//		btnDeleteAction1.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent arg0) {
+//				// Strings in ComboBox haben selbe Reihenfolge wie StringArray
+//				// in startTraining
+//				bc.deleteTraining(comboAction1.getSelectionIndex());
+//				comboAction1.deselectAll();
+//				comboAction1.setEnabled(true);
+//				progressBarAction1.setSelection(0);
+//			}
+//		});
+//
+//		btnDeleteAction2.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent arg0) {
+//				// Strings in ComboBox haben selbe Reihenfolge wie StringArray
+//				// in startTraining
+//				bc.deleteTraining(comboAction2.getSelectionIndex());
+//				comboAction2.deselectAll();
+//				comboAction2.setEnabled(true);
+//				progressBarAction2.setSelection(0);
+//			}
+//		});
+//
+//		btnDeleteAction3.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent arg0) {
+//				// Strings in ComboBox haben selbe Reihenfolge wie StringArray
+//				// in startTraining
+//				bc.deleteTraining(comboAction3.getSelectionIndex());
+//				comboAction3.deselectAll();
+//				comboAction3.setEnabled(true);
+//				progressBarAction3.setSelection(0);
+//			}
+//		});
+//
+//		btnDeleteAction4.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent arg0) {
+//				// Strings in ComboBox haben selbe Reihenfolge wie StringArray
+//				// in startTraining
+//				bc.deleteTraining(comboAction4.getSelectionIndex());
+//				comboAction4.deselectAll();
+//				comboAction4.setEnabled(true);
+//				progressBarAction4.setSelection(0);
+//			}
+//		});
 	}
 }
