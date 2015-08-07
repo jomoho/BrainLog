@@ -70,10 +70,6 @@ public class BackendControl {
 		sendValues = pSend;
 	}
 
-	public void setLogValues(boolean pLog) {
-		logValues = pLog;
-	}
-
 	public void connectToComposer() {
 		EmotiveHandler emo = EmotiveHandler.getInstance();
 		emo.setTarget(Target.COMPOSER);
@@ -126,7 +122,7 @@ public class BackendControl {
 					CommunitactionHandler comm = CommunitactionHandler.getInstance();
 					comm.sendBCIData(state);
 				}
-
+				System.out.println("logValues: " + logValues);
 				if (logValues) {
 					//LogHandler.getInstance().log(state);
 					this.logHandler.log(state);

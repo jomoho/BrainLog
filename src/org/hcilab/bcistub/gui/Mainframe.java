@@ -242,7 +242,7 @@ public class Mainframe {
 
 		Button btnStop = new Button(grpGeneral, SWT.NONE);
 		btnStop.setText("Stop");
-		btnStart.addSelectionListener(new SelectionAdapter() {
+		btnStop.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				
