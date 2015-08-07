@@ -24,7 +24,7 @@ public class Mainframe {
 
 	private final String[] options = { "Push", "Pull", "Lift", "Drop", "Left", "Right", "Rotate Left", "Rotate Right",
 			"Rotate Clockwise", "Rotate Counter-Clockwise", "Rotate Forward", "Rotate Reverse", "Disappear" };
-	private final String[] videoOptions = { "1", "2", "3", "4", "5", "6", "7", "8" };
+	private final String[] videoOptions = {"intro", "1", "2", "3", "4", "5", "6", "7", "8", "meditation1", "meditation2" };
 	private final BackendControl bc;
 	protected Shell shell;
 
@@ -34,6 +34,7 @@ public class Mainframe {
 	private Label lblMeditationcarrier;
 	private Label lblFrustrationcarrier;
 	private Text lblUserText;
+
 	Combo comboVideo;
 	private Label lblBlinkcarrier;
 	private Label lblWinkleftcarrier;
@@ -41,6 +42,7 @@ public class Mainframe {
 	private Label lblLookleftcarrier;
 	private Label lblLookrightcarrier;
 	private Label lblNeutralcarrier;
+	private Label lblRecording;
 	private ProgressBar progressBarExcitement;
 	private ProgressBar progressBarEngagement;
 	private ProgressBar progressBarMeditation;
@@ -215,7 +217,7 @@ public class Mainframe {
 
 		Label lblUser = new Label(grpGeneral, SWT.NONE);
 		lblUser.setText("User:");
-
+		
 		lblUserText = new Text(grpGeneral, SWT.NONE);
 		lblUserText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 
@@ -236,6 +238,8 @@ public class Mainframe {
 				selectedUser = lblUserText.getText();
 				selectedVideo = comboVideo.getText();
 				BackendControl.getInstance().startLog(selectedUser, selectedVideo);
+				lblRecording.setText("Recording");
+
 			}
 		});
 	
@@ -248,8 +252,12 @@ public class Mainframe {
 				
 				BackendControl.getInstance().stopLog();
 				System.out.println("stop");
+				lblRecording.setText("Not recording");
 			}
 		});
+		
+		lblRecording = new Label(grpGeneral, SWT.NONE);
+		lblRecording.setText("Not recording");
 
 		Group grpSettings = new Group(composite, SWT.NONE);
 		grpSettings.setText("Settings");
