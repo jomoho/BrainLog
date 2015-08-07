@@ -235,11 +235,20 @@ public class Mainframe {
 			public void widgetSelected(SelectionEvent arg0) {
 				selectedUser = lblUserText.getText();
 				selectedVideo = comboVideo.getText();
+				BackendControl.getInstance().startLog(selectedUser, selectedVideo);
 			}
 		});
+	
 
 		Button btnStop = new Button(grpGeneral, SWT.NONE);
 		btnStop.setText("Stop");
+		btnStart.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				
+				BackendControl.getInstance().stopLog();
+			}
+		});
 
 		Group grpSettings = new Group(composite, SWT.NONE);
 		grpSettings.setText("Settings");
@@ -255,7 +264,7 @@ public class Mainframe {
 		});
 		btnStreamToUdp.setText("Stream to UDP");
 
-		final Button btnLog = new Button(grpSettings, SWT.CHECK);
+	/*	final Button btnLog = new Button(grpSettings, SWT.CHECK);
 		btnLog.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -263,7 +272,7 @@ public class Mainframe {
 				BackendControl.getInstance().setLogValues(state);
 			}
 		});
-		btnLog.setText("Log to file");
+		btnLog.setText("Log to file");*/
 
 		Group grpAffective = new Group(shell, SWT.NONE);
 		GridData gd_grpAffective = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
