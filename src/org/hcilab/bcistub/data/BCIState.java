@@ -31,10 +31,10 @@ public class BCIState {
 	boolean lookLeft;
 	boolean lookRight;
 	
-	public float eeg[];
+	public double eeg[];
 	
 	public BCIState(){
-		eeg = new float[17];
+		eeg = new double[17];
 	}
 
 	public boolean isBlink() {

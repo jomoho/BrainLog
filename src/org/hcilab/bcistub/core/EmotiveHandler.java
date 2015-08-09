@@ -28,6 +28,7 @@ public class EmotiveHandler extends Thread{
 	short composerPort		= 1726;
 	int state  				= 0;
 	boolean run = false;
+	boolean readyForEEG = false;
 	
 	private EmotiveHandler() {};
 	
@@ -88,8 +89,9 @@ public class EmotiveHandler extends Thread{
 
 	@Override
 	public void run() {
-		
-    	
+		Pointer hData = Edk.INSTANCE.EE_DataCreate();
+		Edk.INSTANCE.EE_DataSetBufferSizeInSec(1);
+		IntByReference nSamplesTaken = new IntByReference(0);
 		while (run) 
 		{
 			state = Edk.INSTANCE.EE_EngineGetNextEvent(eEvent);
@@ -97,10 +99,20 @@ public class EmotiveHandler extends Thread{
 			// New event needs to be handled
 			if (state == EdkErrorCode.EDK_OK.ToInt()) {
 								
-
+				
 				int eventType = Edk.INSTANCE.EE_EmoEngineEventGetType(eEvent);
 				Edk.INSTANCE.EE_EmoEngineEventGetUserId(eEvent, userID);
-				
+				// Log the EmoState if it has been updated
+				if (eventType == Edk.EE_Event_t.EE_UserAdded.ToInt()){
+					if (userID != null) {
+						System.out.println("User added");
+						Edk.INSTANCE.EE_DataAcquisitionEnable(
+								userID.getValue(), true);
+						readyForEEG = true;
+					}
+				}
+
+
 				if(eventType == Edk.EE_Event_t.EE_CognitivEvent.ToInt())
 				{
 					int cogType = Edk.INSTANCE.EE_CognitivEventGetType(eEvent);
@@ -218,6 +230,35 @@ public class EmotiveHandler extends Thread{
 					// cognitive
 					bciState.setCognitiveAction(EmoState.INSTANCE.ES_CognitivGetCurrentAction(eState));
 					bciState.setCognitivePower(EmoState.INSTANCE.ES_CognitivGetCurrentActionPower(eState));
+					
+					//EEG
+					if (readyForEEG) {
+						Edk.INSTANCE.EE_DataUpdateHandle(0, hData);
+
+						Edk.INSTANCE.EE_DataGetNumberOfSample(hData, nSamplesTaken);
+
+						if (nSamplesTaken != null) {
+							if (nSamplesTaken.getValue() != 0) {
+
+								System.out.print("Updated: ");
+								System.out.println(nSamplesTaken.getValue());
+
+								double[] data = new double[nSamplesTaken.getValue()];
+								for (int sampleIdx = 0; sampleIdx < nSamplesTaken
+										.getValue(); ++sampleIdx) {
+									for (int i = 0; i < 17; i++) {
+										Edk.INSTANCE.EE_DataGet(hData, i, data,
+												nSamplesTaken.getValue());
+										System.out.print(data[sampleIdx]);
+										System.out.print(",");
+
+										bciState.eeg[i] = data[sampleIdx];
+									}
+									System.out.println();
+								}
+							}
+						}
+					}
 				}
 			}
 			else if (state != EdkErrorCode.EDK_NO_EVENT.ToInt()) {
