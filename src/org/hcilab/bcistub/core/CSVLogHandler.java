@@ -36,7 +36,7 @@ public class CSVLogHandler {
 		
 		try {
 			out = new PrintWriter(folder + "/log_"+filename+"_"+  rightNow.getTimeInMillis()  +  ".csv");
-			out.append("timestamp" + "," +
+			String line = "timestamp" + "," +
 					"excitement" +"," +
 					"frustration" + "," +
 					"meditation" + "," +
@@ -52,8 +52,12 @@ public class CSVLogHandler {
 					"smirkLeft" + "," +
 					"smirkRight" + "," +
 					"winkLeft" + "," +
-					"winkRight" + 
-					"\n");
+					"winkRight";
+			for(int i = 0; i < 17; i++){
+				line = line + ",eeg"+ i;
+			}
+			line = line + "\n";
+			out.append(line);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -67,7 +71,7 @@ public class CSVLogHandler {
 	{
 		if((out != null) && (pState != null))
 		{
-			out.append(pState.getTimestamp() + "," +
+			String line = pState.getTimestamp() + "," +
 					pState.getExcitement() +"," +
 					pState.getFrustration() + "," +
 					pState.getMeditation() + "," +
@@ -83,7 +87,12 @@ public class CSVLogHandler {
 					pState.getSmirkleft() + "," +
 					pState.getSmirkright() + "," +
 					makeint(pState.isWinkLeft()) + "," +
-					makeint(pState.isWinkRight()) + "," +"\n");
+					makeint(pState.isWinkRight());
+			for(int i = 0; i < 17; i++){
+				line += "," + pState.eeg[i];
+			}
+			line += "\n";
+			out.append(line);
 			out.flush();
 			//pState.flush();
 		}

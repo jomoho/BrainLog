@@ -30,6 +30,12 @@ public class BCIState {
 	boolean winkRight;
 	boolean lookLeft;
 	boolean lookRight;
+	
+	public float eeg[];
+	
+	public BCIState(){
+		eeg = new float[17];
+	}
 
 	public boolean isBlink() {
 		return blink;
