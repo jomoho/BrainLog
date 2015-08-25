@@ -240,21 +240,14 @@ public class EmotiveHandler extends Thread{
 						if (nSamplesTaken != null) {
 							if (nSamplesTaken.getValue() != 0) {
 
-								System.out.print("Updated: ");
-								System.out.println(nSamplesTaken.getValue());
-
 								double[] data = new double[nSamplesTaken.getValue()];
 								for (int sampleIdx = 0; sampleIdx < nSamplesTaken
 										.getValue(); ++sampleIdx) {
 									for (int i = 0; i < 17; i++) {
 										Edk.INSTANCE.EE_DataGet(hData, i, data,
 												nSamplesTaken.getValue());
-										System.out.print(data[sampleIdx]);
-										System.out.print(",");
-
 										bciState.eeg[i] = data[sampleIdx];
 									}
-									System.out.println();
 								}
 							}
 						}

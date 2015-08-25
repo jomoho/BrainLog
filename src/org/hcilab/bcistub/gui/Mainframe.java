@@ -24,7 +24,7 @@ public class Mainframe {
 
 	private final String[] options = { "Push", "Pull", "Lift", "Drop", "Left", "Right", "Rotate Left", "Rotate Right",
 			"Rotate Clockwise", "Rotate Counter-Clockwise", "Rotate Forward", "Rotate Reverse", "Disappear" };
-	private final String[] videoOptions = {"intro", "1", "2", "3", "4", "5", "6", "7", "8", "meditation1", "meditation2" };
+	private final String[] videoOptions = {"intro", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
 	private final BackendControl bc;
 	protected Shell shell;
 

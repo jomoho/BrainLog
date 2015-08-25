@@ -90,6 +90,7 @@ public class BackendControl {
 
 	public void stopLog(){
 		logValues = false;
+		logHandler.close();
 	}
 
 

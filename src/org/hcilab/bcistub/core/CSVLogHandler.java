@@ -98,5 +98,8 @@ public class CSVLogHandler {
 		}
 		
 	}
+	public void close(){
+		out.close();
+	}
 	
 }
