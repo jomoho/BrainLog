@@ -5,6 +5,7 @@ import java.util.TimerTask;
 
 import org.eclipse.swt.widgets.Display;
 import org.hcilab.bcistub.comm.CommunitactionHandler;
+import org.hcilab.bcistub.comm.TCPCommHandler;
 import org.hcilab.bcistub.core.EmotiveHandler.Target;
 import org.hcilab.bcistub.data.BCIState;
 import org.hcilab.bcistub.gui.Mainframe;
@@ -13,10 +14,12 @@ public class BackendControl {
 
 	private static BackendControl instance;
 	private Mainframe window;
+	private static String HOSTURL = "192.168.178.21";
 
 	private boolean sendValues = false;
+	private boolean tcpCognitiveSend = false;
 	private boolean logValues = false;
-	
+
 	private CSVLogHandler logHandler;
 
 	public static int[] cognitivActionList = { EmoState.EE_CognitivAction_t.COG_PUSH.ToInt(),
@@ -32,6 +35,8 @@ public class BackendControl {
 
 	private BackendControl() {
 		this.logHandler = new CSVLogHandler("testfolder", "testfilename");
+		
+		TCPCommHandler.getInstance().init(BackendControl.HOSTURL, 1234);
 	};
 
 	public static BackendControl getInstance() {
@@ -68,6 +73,9 @@ public class BackendControl {
 
 	public void setUDPStreaming(boolean pSend) {
 		sendValues = pSend;
+	}
+	public void setCognitiveToTCP(boolean pSend) {
+		tcpCognitiveSend = pSend;
 	}
 
 	public void connectToComposer() {
@@ -112,6 +120,7 @@ public class BackendControl {
 				window.setWinkLeft(state.isWinkLeft());
 				window.setWinkRight(state.isWinkRight());
 				int cog_action = state.getCognitiveAction();
+				
 				if (cog_action != 1) {// 1 is neutral
 					window.setCognitiveAction(cog_action, state.getCognitivePower());
 					System.out.println("Cognitive Action: " + cog_action);
@@ -122,6 +131,9 @@ public class BackendControl {
 				if (sendValues) {
 					CommunitactionHandler comm = CommunitactionHandler.getInstance();
 					comm.sendBCIData(state);
+				}
+				if(tcpCognitiveSend){
+					TCPCommHandler.getInstance().sendBCIData(state);
 				}
 				//System.out.println("logValues: " + logValues);
 				if (logValues) {

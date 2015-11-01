@@ -53,9 +53,9 @@ public class CSVLogHandler {
 					"smirkRight" + "," +
 					"winkLeft" + "," +
 					"winkRight";
-			for(int i = 0; i < 17; i++){
+			/*for(int i = 0; i < 17; i++){
 				line = line + ",eeg"+ i;
-			}
+			}*/
 			line = line + "\n";
 			out.append(line);
 		} catch (FileNotFoundException e) {
