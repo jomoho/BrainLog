@@ -1,5 +1,7 @@
 package org.hcilab.bcistub.core;
 
+import java.io.IOException;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -9,6 +11,7 @@ import org.hcilab.bcistub.data.BCIState;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
+import com.sun.xml.internal.ws.util.ByteArrayBuffer;
 
 
 public class EmotiveHandler extends Thread{
@@ -53,6 +56,7 @@ public class EmotiveHandler extends Thread{
 		return bciState;		
 	}
 	
+	@SuppressWarnings("null")
 	public void init(){
 		
     	int option 				= target;
@@ -106,8 +110,29 @@ public class EmotiveHandler extends Thread{
 				if (eventType == Edk.EE_Event_t.EE_UserAdded.ToInt()){
 					if (userID != null) {
 						System.out.println("User added");
-						Edk.INSTANCE.EE_DataAcquisitionEnable(
-								userID.getValue(), true);
+						
+						
+						// Allocate an internal structure to hold profile data
+						Pointer eProfile = Edk.INSTANCE.EE_ProfileEventCreate();
+						 // Retrieve the base profile and attach it to the eProfile handle
+						Edk.INSTANCE.EE_GetBaseProfile(eProfile);
+						if(Edk.INSTANCE.EE_GetUserProfile(userID.getValue(), eProfile) == EdkErrorCode.EDK_OK.ToInt()){
+							IntByReference profileSize = new IntByReference();
+							
+							if (Edk.INSTANCE.EE_GetUserProfileSize(eProfile, profileSize) == EdkErrorCode.EDK_OK.ToInt()) {
+								System.out.println("User Profile Size: " + profileSize.getValue());
+
+
+								//Edk.INSTANCE.EE_SaveUserProfile(userID.getValue(), "profile.p");
+								if( Edk.INSTANCE.EE_LoadUserProfile(userID.getValue(), "profile.emu") !=  EdkErrorCode.EDK_OK.ToInt()){
+
+									System.out.println("Error loading");
+								}
+
+							}
+						}
+						
+						Edk.INSTANCE.EE_DataAcquisitionEnable(userID.getValue(), true);
 						readyForEEG = true;
 					}
 				}
@@ -164,30 +189,30 @@ public class EmotiveHandler extends Thread{
 					//eye
 					if (EmoState.INSTANCE.ES_ExpressivIsBlink(eState) == 1){
 						bciState.setBlink(true);
-						System.out.println("Blink");
+						//System.out.println("Blink");
 					}else{
 						bciState.setBlink(false);
 					}
 					if (EmoState.INSTANCE.ES_ExpressivIsLeftWink(eState) == 1){
-						System.out.println("LeftWink");
+						//System.out.println("LeftWink");
 						bciState.setWinkLeft(true);
 					}else{
 						bciState.setWinkLeft(false);
 					}
 					if (EmoState.INSTANCE.ES_ExpressivIsRightWink(eState) == 1){
-						System.out.println("RightWink");
+						//System.out.println("RightWink");
 						bciState.setWinkRight(true);
 					}else{
 						bciState.setWinkRight(false);
 					}
 					if (EmoState.INSTANCE.ES_ExpressivIsLookingLeft(eState) == 1){										
-						System.out.println("LookingLeft");
+						//System.out.println("LookingLeft");
 						bciState.setLookLeft(true);
 					}else{
 						bciState.setLookLeft(false);
 					}
 					if (EmoState.INSTANCE.ES_ExpressivIsLookingRight(eState) == 1){
-						System.out.println("LookingRight");
+						//System.out.println("LookingRight");
 						bciState.setLookRight(true);
 					}else{
 						bciState.setLookRight(false);
@@ -230,6 +255,10 @@ public class EmotiveHandler extends Thread{
 					// cognitive
 					bciState.setCognitiveAction(EmoState.INSTANCE.ES_CognitivGetCurrentAction(eState));
 					bciState.setCognitivePower(EmoState.INSTANCE.ES_CognitivGetCurrentActionPower(eState));
+					
+					if(EmoState.INSTANCE.ES_CognitivGetCurrentActionPower(eState) > 0.1){
+						System.out.println("COG: "+EmoState.INSTANCE.ES_CognitivGetCurrentAction(eState) +" : "+ EmoState.INSTANCE.ES_CognitivGetCurrentActionPower(eState));;
+					}
 					
 					//EEG
 					if (readyForEEG) {

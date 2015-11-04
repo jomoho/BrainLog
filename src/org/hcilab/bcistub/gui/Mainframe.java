@@ -536,6 +536,15 @@ public class Mainframe {
 		});
 		mntmToComposer.setText("To Composer");
 
+
+		comboAction1.setEnabled(true);
+		comboAction2.setEnabled(true);
+		comboAction3.setEnabled(true);
+		comboAction4.setEnabled(true);
+		
+		btnNeutralTrain.setEnabled(false);
+		btnNeutralDelete.setEnabled(false);
+		
 		btnNeutralTrain.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {

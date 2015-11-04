@@ -14,7 +14,7 @@ public class BackendControl {
 
 	private static BackendControl instance;
 	private Mainframe window;
-	private static String HOSTURL = "192.168.178.21";
+	private static String HOSTURL = "127.0.0.1";
 
 	private boolean sendValues = false;
 	private boolean tcpCognitiveSend = false;
@@ -119,9 +119,12 @@ public class BackendControl {
 				window.setLookRight(state.isLookRight());
 				window.setWinkLeft(state.isWinkLeft());
 				window.setWinkRight(state.isWinkRight());
+				
 				int cog_action = state.getCognitiveAction();
 				
-				if (cog_action != 1) {// 1 is neutral
+				
+				
+				if ( cog_action !=1) {// 1 is neutral
 					window.setCognitiveAction(cog_action, state.getCognitivePower());
 					System.out.println("Cognitive Action: " + cog_action);
 					System.out.println("CognitivePower: " + state.getCognitivePower());
